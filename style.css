@@ -1,630 +1,313 @@
-/* ==========================
-   GUEST SYSTEM
-========================== */
-
-const guests = {
-    rahim: {
-        name: "Rahim Khan",
-        reminder: true,
-        pickup: true
-    },
-
-    salman: {
-        name: "Salman Ahmed",
-        reminder: false,
-        pickup: false
-    },
-
-    arif: {
-        name: "Arif Ahmad",
-        reminder: true,
-        pickup: false
-    },
-
-    sahil: {
-        name: "Sahil Khan",
-        reminder: true,
-        pickup: true
-    },
-
-    imran: {
-        name: "Imran Ahmad",
-        reminder: false,
-        pickup: false
-    }
-};
-
-
-/* ==========================
-   PAGE READY
-========================== */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    /* ==========================
-       GUEST
-    ========================== */
-
-    const params = new URLSearchParams(
-        window.location.search
-    );
-
-    const guestId = params.get("guest");
-
-    if (guestId && guests[guestId]) {
-
-        const guest = guests[guestId];
-
-        const guestName =
-            document.getElementById("guestName");
-
-        const guestNameHero =
-            document.getElementById("guestNameHero");
-
-        if (guestName) {
-            guestName.textContent = guest.name;
-        }
-
-        if (guestNameHero) {
-            guestNameHero.textContent = guest.name;
-        }
-    }
-
-
-    /* ==========================
-       ENVELOPE
-    ========================== */
-
-    const envelope =
-        document.getElementById("envelope");
-
-    const inside =
-        document.getElementById("inside");
-
-    const close =
-        document.getElementById("close");
-
-
-    if (envelope && inside) {
-
-        envelope.addEventListener("click", function () {
-
-            if (envelope.classList.contains("open")) {
-                return;
-            }
-
-            envelope.classList.add("open");
-
-            setTimeout(function () {
-
-                inside.classList.add("show");
-
-            }, 850);
-
-        });
-
-    }
-
-
-    if (close) {
-
-        close.addEventListener("click", function (e) {
-
-            e.stopPropagation();
-
-            inside.classList.remove("show");
-
-            setTimeout(function () {
-
-                envelope.classList.remove("open");
-
-            }, 850);
-
-        });
-
-    }
-
-
-    /* ==========================
-       COUNTDOWN
-    ========================== */
-
-    const weddingDate =
-        new Date("2026-11-07T13:00:00").getTime();
-
-
-    function updateCountdown() {
-
-        const now =
-            new Date().getTime();
-
-        const distance =
-            weddingDate - now;
-
-
-        const days =
-            document.getElementById("days");
-
-        const hours =
-            document.getElementById("hours");
-
-        const minutes =
-            document.getElementById("minutes");
-
-        const seconds =
-            document.getElementById("seconds");
-
-
-        if (!days || !hours || !minutes || !seconds) {
-            return;
-        }
-
-
-        if (distance <= 0) {
-
-            days.textContent = "00";
-            hours.textContent = "00";
-            minutes.textContent = "00";
-            seconds.textContent = "00";
-
-            return;
-        }
-
-
-        const d =
-            Math.floor(
-                distance /
-                (1000 * 60 * 60 * 24)
-            );
-
-
-        const h =
-            Math.floor(
-                (distance %
-                (1000 * 60 * 60 * 24)) /
-                (1000 * 60 * 60)
-            );
-
-
-        const m =
-            Math.floor(
-                (distance %
-                (1000 * 60 * 60)) /
-                (1000 * 60)
-            );
-
-
-        const s =
-            Math.floor(
-                (distance %
-                (1000 * 60)) /
-                1000
-            );
-
-
-        days.textContent =
-            String(d).padStart(2, "0");
-
-        hours.textContent =
-            String(h).padStart(2, "0");
-
-        minutes.textContent =
-            String(m).padStart(2, "0");
-
-        seconds.textContent =
-            String(s).padStart(2, "0");
-    }
-
-
-    updateCountdown();
-
-    setInterval(updateCountdown, 1000);
-
-
-    /* ==========================
-       GALLERY
-    ========================== */
-
-    document
-        .querySelectorAll(".gallery-grid img")
-        .forEach(function (img) {
-
-            img.addEventListener(
-                "click",
-                function () {
-
-                    window.open(
-                        img.src,
-                        "_blank"
-                    );
-
-                }
-            );
-
-        });
-
-
-    /* ==========================
-       FALLING FLOWERS
-    ========================== */
-
-    const flowers = [
-        "🌸",
-        "🌺",
-        "🌷",
-        "🌼",
-        "❀",
-        "✿",
-        "✨"
-    ];
-
-
-    function createFlower() {
-
-        const flower =
-            document.createElement("div");
-
-        flower.className = "falling-flower";
-
-        flower.textContent =
-            flowers[
-                Math.floor(
-                    Math.random() *
-                    flowers.length
-                )
-            ];
-
-
-        flower.style.left =
-            Math.random() * 100 + "vw";
-
-
-        flower.style.fontSize =
-            (12 + Math.random() * 16) + "px";
-
-
-        flower.style.animationDuration =
-            (6 + Math.random() * 5) + "s";
-
-
-        flower.style.animationDelay =
-            "0s";
-
-
-        document.body.appendChild(flower);
-
-
-        setTimeout(function () {
-
-            flower.remove();
-
-        }, 12000);
-
-    }
-
-
-    /* First flowers */
-
-    for (let i = 0; i < 15; i++) {
-
-        setTimeout(
-            createFlower,
-            i * 250
-        );
-
-    }
-
-
-    /* Continuous flowers */
-
-    setInterval(
-        createFlower,
-        700
-    );
-
-});
-
-
-/* ==========================
-   ENTER INVITATION
-========================== */
-
-function goToCard() {
-
-    const weddingCard =
-        document.getElementById("weddingCard");
-
-    if (weddingCard) {
-
-        weddingCard.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        }
-       /* =================================
+/* =================================
    PREMIUM ANIMATION FIX
 ================================= */
 
 
-/* STAR ANIMATION */
+/* =================================
+   A — FALLING FLOWERS
+================================= */
 
-.stars{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    z-index:1;
+.falling-flower {
+    position: fixed;
+    top: -60px;
+    left: 0;
+
+    z-index: 99999;
+
+    pointer-events: none;
+    user-select: none;
+
+    display: block;
+
+    will-change: transform, opacity;
+
+    animation-name: fallingFlower;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
 }
 
-.stars span{
-    position:absolute;
-    display:block;
 
-    color:#e6c66e;
+@keyframes fallingFlower {
 
-    font-size:22px;
+    0% {
+        transform:
+            translate3d(0, -60px, 0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    30% {
+        transform:
+            translate3d(25px, 30vh, 0)
+            rotate(100deg);
+
+        opacity: 1;
+    }
+
+    60% {
+        transform:
+            translate3d(-25px, 65vh, 0)
+            rotate(220deg);
+
+        opacity: .85;
+    }
+
+    100% {
+        transform:
+            translate3d(50px, 110vh, 0)
+            rotate(420deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =================================
+   B — ENVELOPE OPEN
+================================= */
+
+.envelope {
+    position: relative;
+
+    transform-origin: center;
+
+    transition:
+        transform 1s ease,
+        opacity 1s ease;
+}
+
+
+/* Flap opens first */
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+
+    transition:
+        transform .8s ease;
+
+    transform-origin: top center;
+}
+
+
+/* Seal disappears */
+
+.envelope.open .seal {
+    transform:
+        translate(-50%, -50%)
+        scale(2);
+
+    opacity: 0;
+
+    transition:
+        transform .5s ease,
+        opacity .5s ease;
+}
+
+
+/* Envelope disappears AFTER flap */
+
+.envelope.hide-envelope {
+    transform:
+        translateY(180px)
+        scale(.82);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        transform 1s ease,
+        opacity 1s ease;
+}
+
+
+/* =================================
+   INSIDE CARD APPEAR
+================================= */
+
+.inside {
+    opacity: 0;
+
+    transform:
+        translateY(25px)
+        scale(.95);
+
+    pointer-events: none;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+
+.inside.show {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    pointer-events: auto;
+}
+
+
+/* =================================
+   C — STARS
+================================= */
+
+.stars {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    overflow: hidden;
+}
+
+
+.stars span {
+    position: absolute;
+
+    display: block;
+
+    color: #e6c66e;
+
+    font-size: 22px;
+
+    opacity: .7;
 
     animation:
         starFloat 3s ease-in-out infinite,
         starGlow 2s ease-in-out infinite alternate;
 }
 
-.stars span:nth-child(1){
-    top:12%;
-    left:12%;
-    animation-delay:0s;
-}
 
-.stars span:nth-child(2){
-    top:25%;
-    right:15%;
-    animation-delay:.6s;
-}
+.stars span:nth-child(1) {
+    top: 12%;
+    left: 12%;
 
-.stars span:nth-child(3){
-    bottom:20%;
-    left:18%;
-    animation-delay:1.2s;
-}
-
-.stars span:nth-child(4){
-    bottom:30%;
-    right:12%;
-    animation-delay:1.8s;
-}
-
-.stars span:nth-child(5){
-    top:8%;
-    right:45%;
-    animation-delay:2.3s;
+    animation-delay: 0s;
 }
 
 
-@keyframes starFloat{
+.stars span:nth-child(2) {
+    top: 25%;
+    right: 15%;
 
-    0%{
+    animation-delay: .6s;
+}
+
+
+.stars span:nth-child(3) {
+    bottom: 20%;
+    left: 18%;
+
+    animation-delay: 1.2s;
+}
+
+
+.stars span:nth-child(4) {
+    bottom: 30%;
+    right: 12%;
+
+    animation-delay: 1.8s;
+}
+
+
+.stars span:nth-child(5) {
+    top: 8%;
+    right: 45%;
+
+    animation-delay: 2.3s;
+}
+
+
+@keyframes starFloat {
+
+    0% {
         transform:
             translateY(0)
             rotate(0deg);
     }
 
-    50%{
+    50% {
         transform:
             translateY(-18px)
             rotate(25deg);
     }
 
-    100%{
+    100% {
         transform:
             translateY(0)
             rotate(0deg);
     }
-
 }
 
 
-@keyframes starGlow{
+@keyframes starGlow {
 
-    from{
-        opacity:.35;
+    from {
+        opacity: .35;
+
         text-shadow:
             0 0 3px #d6b35d;
     }
 
-    to{
-        opacity:1;
+    to {
+        opacity: 1;
+
         text-shadow:
             0 0 18px #e6c66e;
     }
-
 }
 
 
 /* =================================
-   ENVELOPE OPEN ANIMATION
+   D — HEART
 ================================= */
 
-.envelope{
-    transform-origin:center;
-    transition:
-        transform 1.2s ease,
-        opacity 1.2s ease;
-}
+.heart {
+    display: inline-block;
 
-
-.envelope.open{
-    transform:
-        translateY(180px)
-        scale(.82);
-
-    opacity:0;
-}
-
-
-.envelope.open .flap{
-    transform:
-        rotateX(180deg);
-}
-
-
-.envelope.open .seal{
-    transform:
-        translate(-50%,-50%)
-        scale(2);
-
-    opacity:0;
-}
-
-
-/* =================================
-   HEART
-================================= */
-
-.heart{
-    display:inline-block;
+    transform-origin: center;
 
     animation:
         heartBeat 1.1s ease-in-out infinite;
 }
 
 
-@keyframes heartBeat{
+@keyframes heartBeat {
 
-    0%{
-        transform:scale(1);
+    0% {
+        transform: scale(1);
     }
 
-    25%{
-        transform:scale(1.18);
+    25% {
+        transform: scale(1.18);
     }
 
-    40%{
-        transform:scale(1);
+    40% {
+        transform: scale(1);
     }
 
-    60%{
-        transform:scale(1.15);
+    60% {
+        transform: scale(1.15);
     }
 
-    100%{
-        transform:scale(1);
+    100% {
+        transform: scale(1);
     }
-
-}
-
-
-/* =================================
-   FALLING FLOWERS
-================================= */
-
-.falling-flower{
-
-    position:fixed;
-
-    top:-50px;
-
-    left:0;
-
-    z-index:9999;
-
-    pointer-events:none;
-
-    user-select:none;
-
-    will-change:
-        transform,
-        opacity;
-
-    animation:
-        fallingFlower
-        linear
-        forwards;
-}
-
-
-@keyframes fallingFlower{
-
-    0%{
-
-        transform:
-            translate3d(
-                0,
-                -50px,
-                0
-            )
-            rotate(0deg);
-
-        opacity:0;
-
-    }
-
-
-    10%{
-
-        opacity:1;
-
-    }
-
-
-    30%{
-
-        transform:
-            translate3d(
-                25px,
-                30vh,
-                0
-            )
-            rotate(100deg);
-
-        opacity:1;
-
-    }
-
-
-    60%{
-
-        transform:
-            translate3d(
-                -25px,
-                65vh,
-                0
-            )
-            rotate(220deg);
-
-        opacity:.85;
-
-    }
-
-
-    100%{
-
-        transform:
-            translate3d(
-                50px,
-                110vh,
-                0
-            )
-            rotate(420deg);
-
-        opacity:0;
-
-    }
-
-}
-
-
-/* =================================
-   EXTRA CARD GLOW
-================================= */
-
-.envelope:hover .card{
-
-    box-shadow:
-        0 25px 60px rgba(0,0,0,.5),
-        0 0 35px rgba(201,164,76,.25),
-        inset 0 0 0 8px
-        rgba(183,132,45,.12);
-
 }
 
 
@@ -632,23 +315,22 @@ function goToCard() {
    BUTTON SHINE
 ================================= */
 
-.enter-button{
-    position:relative;
-    overflow:hidden;
+.enter-button {
+    position: relative;
+    overflow: hidden;
 }
 
 
-.enter-button::after{
+.enter-button::after {
+    content: "";
 
-    content:"";
+    position: absolute;
 
-    position:absolute;
+    top: 0;
+    left: -100%;
 
-    top:0;
-    left:-100%;
-
-    width:50%;
-    height:100%;
+    width: 50%;
+    height: 100%;
 
     background:
         linear-gradient(
@@ -658,33 +340,24 @@ function goToCard() {
             transparent
         );
 
-    transform:skewX(-20deg);
+    transform: skewX(-20deg);
 
     animation:
-        buttonShine
-        3s
-        infinite;
-
+        buttonShine 3s infinite;
 }
 
 
-@keyframes buttonShine{
+@keyframes buttonShine {
 
-    0%{
-        left:-100%;
+    0% {
+        left: -100%;
     }
 
-    40%{
-        left:130%;
+    40% {
+        left: 130%;
     }
 
-    100%{
-        left:130%;
+    100% {
+        left: 130%;
     }
-
-       }
-
-    }
-
 }
-       
