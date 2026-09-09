@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08271d">
+
+    <title>Shaiba & Faruq Azam | Nikah Invitation</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HERO ================= -->
+
+<header class="hero" id="home">
+
+    <div class="stars">
+        <span>✦</span>
+        <span>✧</span>
+        <span>✦</span>
+        <span>✧</span>
+        <span>✦</span>
+    </div>
+
+    <div class="hero-content">
+
+        <p class="bismillah">
+            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+        </p>
+
+        <p class="welcome">
+            In the name of Allah, the Most Gracious,
+            the Most Merciful
+        </p>
+
+        <p class="invitation-label">
+            YOU ARE CORDIALLY INVITED
+        </p>
+
+        <div class="ornament">
+            ✦ ───── ✧ ───── ✦
+        </div>
+
+        <h1>Shaiba</h1>
+
+        <div class="ampersand">&amp;</div>
+
+        <h1>Faruq Azam</h1>
+
+        <div class="ornament">
+            ✦ ───── ✧ ───── ✦
+        </div>
+
+        <p class="nikah-intro">
+            Together with their families,
+            they invite you to witness
+            their blessed Nikah.
+        </p>
+
+        <!-- Guest -->
+
+        <div class="guest-box">
+            <span>INVITATION FOR</span>
+            <strong id="guestNameHero">GUEST</strong>
+        </div>
+
+        <button
+            class="enter-button"
+            onclick="goToCard()">
+            ENTER INVITATION
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= WEDDING CARD ================= -->
+
+<section class="card-section" id="weddingCard">
+
+    <div class="card-wrapper">
+
+        <div class="guest-title">
+            INVITATION FOR
+            <strong id="guestName">GUEST</strong>
+        </div>
+
+        <!-- ENVELOPE -->
+
+        <div class="envelope" id="envelope">
+
+            <div class="card">
+
+                <div class="arch"></div>
+
+                <div class="invited">
+                    YOU ARE INVITED
+                </div>
+
+                <div class="monogram">
+                    S <span>&amp;</span> F
+                </div>
+
+                <div class="flowers">
+                    ❀ ❧ ❀
+                </div>
+
+            </div>
+
+            <div class="flap"></div>
+
+            <div class="seal">
+                S<br>&amp;<br>F
+            </div>
+
+            <div class="tap">
+                ✦ TAP TO OPEN ✦
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= INSIDE CARD ================= -->
+
+<div class="inside" id="inside">
+
+    <button class="close" id="close">×</button>
+
+    <div class="ornament">
+        ✦ ❦ ✦
+    </div>
+
+    <div class="arabic">
+        بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+    </div>
+
+    <div class="subtitle">
+        WITH THE BLESSINGS OF ALLAH
+    </div>
+
+    <h2>Wedding</h2>
+    <h3>Invitation</h3>
+
+    <div class="heart">♥</div>
+
+    <p class="message">
+        With great joy and happiness,<br>
+        we request the pleasure of your presence<br>
+        on this blessed occasion.
+    </p>
+
+    <div class="line"></div>
+
+    <div class="names">
+
+        <div>
+            <div class="label">BRIDE</div>
+            <div class="name">Shaiba</div>
+        </div>
+
+        <div class="amp">&amp;</div>
+
+        <div>
+            <div class="label">GROOM</div>
+            <div class="name">Faruq Azam</div>
+        </div>
+
+    </div>
+
+    <div class="line"></div>
+
+    <!-- FAMILY -->
+
+    <div class="label">
+        BRIDE'S FATHER
+    </div>
+
+    <div class="family">
+        Mohd Ahmad Master
+    </div>
+
+    <div class="label">
+        GROOM'S FATHER
+    </div>
+
+    <div class="family">
+        Zafar
+    </div>
+
+    <div class="line"></div>
+
+    <!-- DETAILS -->
+
+    <div class="details">
+
+        <div class="detail">
+            <div class="icon">📅</div>
+            <b>DATE</b>
+            <span>
+                7 November 2026
+            </span>
+        </div>
+
+        <div class="detail">
+            <div class="icon">🕐</div>
+            <b>TIME</b>
+            <span>
+                1:00 PM
+            </span>
+        </div>
+
+        <div class="detail">
+            <div class="icon">📍</div>
+            <b>VENUE</b>
+            <span>
+                Madrasa Ainul Islam<br>
+                Newada Mubarakpur
+            </span>
+        </div>
+
+    </div>
+
+    <div class="line"></div>
+
+    <p class="message">
+        Your presence and blessings<br>
+        will make this beautiful occasion<br>
+        even more special.
+    </p>
+
+    <div class="ornament">
+        ✦ ❦ ✦
+    </div>
+
+    <div class="arabic">
+        جزاك الله خيرا
+    </div>
+
+</div>
+
+
+<main>
+
+<!-- ================= COUNTDOWN ================= -->
+
+<section class="countdown-section">
+
+    <p class="section-label">
+        THE BIG DAY
+    </p>
+
+    <h2>
+        Counting The Moments
+    </h2>
+
+    <div class="gold-line"></div>
+
+    <div class="countdown">
+
+        <div class="time-box">
+            <span id="days">00</span>
+            <small>DAYS</small>
+        </div>
+
+        <div class="time-box">
+            <span id="hours">00</span>
+            <small>HOURS</small>
+        </div>
+
+        <div class="time-box">
+            <span id="minutes">00</span>
+            <small>MINUTES</small>
+        </div>
+
+        <div class="time-box">
+            <span id="seconds">00</span>
+            <small>SECONDS</small>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= NIKAH ================= -->
+
+<section class="details-section">
+
+    <p class="section-label">
+        THE CEREMONY
+    </p>
+
+    <h2>
+        Nikah
+    </h2>
+
+    <div class="gold-line"></div>
+
+    <div class="detail-main">
+
+        <div class="big-icon">☪</div>
+
+        <h3>
+            Direct Nikah
+        </h3>
+
+        <p>
+            07 November 2026
+        </p>
+
+        <strong>
+            1:00 PM
+        </strong>
+
+        <div class="mini-line"></div>
+
+        <h3>
+            Madrasa Ainul Islam
+        </h3>
+
+        <p>
+            Newada, Mubarakpur,<br>
+            Azamgarh, Uttar Pradesh
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FAMILY ================= -->
+
+<section class="family-section">
+
+    <p class="section-label">
+        WITH THE BLESSINGS OF
+    </p>
+
+    <h2>
+        Our Families
+    </h2>
+
+    <div class="gold-line"></div>
+
+    <div class="family-wrapper">
+
+        <div class="family-card">
+
+            <span>
+                BRIDE'S FAMILY
+            </span>
+
+            <h3>
+                Shaiba
+            </h3>
+
+            <p>
+                Beloved Daughter of
+            </p>
+
+            <strong>
+                Mohd Ahmad Master
+            </strong>
+
+        </div>
+
+        <div class="family-symbol">
+            ✦
+        </div>
+
+        <div class="family-card">
+
+            <span>
+                GROOM'S FAMILY
+            </span>
+
+            <h3>
+                Faruq Azam
+            </h3>
+
+            <p>
+                Beloved Son of
+            </p>
+
+            <strong>
+                Zafar
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DUA ================= -->
+
+<section class="dua">
+
+    <div class="dua-decoration">
+        ✧
+    </div>
+
+    <p class="arabic">
+        وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم
+        مِّنْ أَنفُسِكُمْ أَزْوَاجًا
+    </p>
+
+    <div class="gold-line"></div>
+
+    <p class="dua-text">
+        "And among His signs is that He created
+        for you spouses from among yourselves
+        so that you may find tranquility in them."
+    </p>
+
+    <p class="dua-source">
+        — Qur'an 30:21
+    </p>
+
+    <p class="blessing">
+        May Allah bless this beautiful union
+        with love, happiness, peace and
+        endless blessings. Ameen.
+    </p>
+
+</section>
+
+
+<!-- ================= GALLERY ================= -->
+
+<section class="gallery">
+
+    <p class="section-label">
+        MEMORIES
+    </p>
+
+    <h2>
+        Our Gallery
+    </h2>
+
+    <div class="gold-line"></div>
+
+    <div class="gallery-grid">
+
+        <img src="https://placehold.co/800x600/123c2d/c9a44c?text=Memory+1"
+             alt="Wedding Memory 1">
+
+        <img src="https://placehold.co/800x600/123c2d/c9a44c?text=Memory+2"
+             alt="Wedding Memory 2">
+
+        <img src="https://placehold.co/800x600/123c2d/c9a44c?text=Memory+3"
+             alt="Wedding Memory 3">
+
+        <img src="https://placehold.co/800x600/123c2d/c9a44c?text=Memory+4"
+             alt="Wedding Memory 4">
+
+    </div>
+
+</section>
+
+
+<!-- ================= VENUE ================= -->
+
+<section class="venue">
+
+    <p class="section-label">
+        JOIN US AT
+    </p>
+
+    <h2>
+        The Venue
+    </h2>
+
+    <div class="gold-line"></div>
+
+    <div class="venue-card">
+
+        <div class="location-icon">
+            📍
+        </div>
+
+        <h3>
+            Madrasa Ainul Islam
+        </h3>
+
+        <p>
+            Newada, Mubarakpur,<br>
+            Azamgarh, Uttar Pradesh
+        </p>
+
+        <a
+            href="https://www.google.com/maps/search/?api=1&query=Madrasa+Ainul+Islam+Newada+Mubarakpur+Azamgarh"
+            target="_blank">
+            OPEN IN GOOGLE MAPS
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FINAL ================= -->
+
+<section class="final-message">
+
+    <div class="final-ornament">
+        ✦
+    </div>
+
+    <h2>
+        You're Most Welcome
+    </h2>
+
+    <p>
+        We would be honored by your presence
+        and blessed by your prayers.
+    </p>
+
+    <div class="final-ornament">
+        ✦
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        بِسْمِ اللَّهِ
+    </p>
+
+    <h2>
+        Shaiba &amp; Faruq Azam
+    </h2>
+
+    <p>
+        07 November 2026 • 1:00 PM
+    </p>
+
+    <p>
+        Madrasa Ainul Islam
+    </p>
+
+    <div class="gold-line"></div>
+
+    <p>
+        May Allah bless this beautiful beginning
+        and fill their life with love,
+        peace and happiness.
+    </p>
+
+    <small>
+        Made with love &amp; duas ❤️
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
