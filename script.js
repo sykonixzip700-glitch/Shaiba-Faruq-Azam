@@ -4,34 +4,34 @@
 
 const guests = {
 
-    rahim:{
-        name:"Rahim Khan",
-        reminder:true,
-        pickup:true
+    rahim: {
+        name: "Rahim Khan",
+        reminder: true,
+        pickup: true
     },
 
-    salman:{
-        name:"Salman Ahmed",
-        reminder:false,
-        pickup:false
+    salman: {
+        name: "Salman Ahmed",
+        reminder: false,
+        pickup: false
     },
 
-    arif:{
-        name:"Arif Ahmad",
-        reminder:true,
-        pickup:false
+    arif: {
+        name: "Arif Ahmad",
+        reminder: true,
+        pickup: false
     },
 
-    sahil:{
-        name:"Sahil Khan",
-        reminder:true,
-        pickup:true
+    sahil: {
+        name: "Sahil Khan",
+        reminder: true,
+        pickup: true
     },
 
-    imran:{
-        name:"Imran Ahmad",
-        reminder:false,
-        pickup:false
+    imran: {
+        name: "Imran Ahmad",
+        reminder: false,
+        pickup: false
     }
 
 };
@@ -41,11 +41,11 @@ const guests = {
    PAGE READY
 ========================== */
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==========================
-       GUEST
+       GUEST NAME
     ========================== */
 
     const params =
@@ -56,32 +56,41 @@ document.addEventListener("DOMContentLoaded",function(){
     const guestId =
         params.get("guest");
 
-    if(
+
+    if (
         guestId &&
         guests[guestId]
-    ){
+    ) {
 
         const guest =
             guests[guestId];
+
 
         const guestName =
             document.getElementById(
                 "guestName"
             );
 
+
         const guestNameHero =
             document.getElementById(
                 "guestNameHero"
             );
 
-        if(guestName){
+
+        if (guestName) {
+
             guestName.textContent =
                 guest.name;
+
         }
 
-        if(guestNameHero){
+
+        if (guestNameHero) {
+
             guestNameHero.textContent =
                 guest.name;
+
         }
 
     }
@@ -96,10 +105,12 @@ document.addEventListener("DOMContentLoaded",function(){
             "envelope"
         );
 
+
     const inside =
         document.getElementById(
             "inside"
         );
+
 
     const close =
         document.getElementById(
@@ -107,29 +118,51 @@ document.addEventListener("DOMContentLoaded",function(){
         );
 
 
-    if(envelope && inside){
+    /*
+       OPEN ENVELOPE
+    */
+
+    if (
+        envelope &&
+        inside
+    ) {
 
         envelope.addEventListener(
             "click",
-            function(){
+            function (e) {
 
-                if(
+                /*
+                   Don't reopen
+                   while already open
+                */
+
+                if (
                     envelope.classList.contains(
                         "open"
                     )
-                ){
+                ) {
+
                     return;
+
                 }
+
+
+                /*
+                   Open flap
+                */
 
                 envelope.classList.add(
                     "open"
                 );
 
 
-                /* Flap opens first */
+                /*
+                   After flap animation,
+                   move envelope away
+                */
 
                 setTimeout(
-                    function(){
+                    function () {
 
                         envelope.classList.add(
                             "hide-envelope"
@@ -140,10 +173,12 @@ document.addEventListener("DOMContentLoaded",function(){
                 );
 
 
-                /* Inside card appears */
+                /*
+                   Show invitation card
+                */
 
                 setTimeout(
-                    function(){
+                    function () {
 
                         inside.classList.add(
                             "show"
@@ -160,30 +195,51 @@ document.addEventListener("DOMContentLoaded",function(){
 
 
     /* ==========================
-       CLOSE CARD
+       CLOSE ENVELOPE / CARD
     ========================== */
 
-    if(close){
+    if (
+        close &&
+        inside &&
+        envelope
+    ) {
 
         close.addEventListener(
             "click",
-            function(e){
+            function (e) {
+
+                /*
+                   Prevent envelope
+                   click event
+                */
 
                 e.stopPropagation();
+
+
+                /*
+                   Hide invitation
+                */
 
                 inside.classList.remove(
                     "show"
                 );
 
-                setTimeout(
-                    function(){
 
-                        envelope.classList.remove(
-                            "open"
-                        );
+                /*
+                   Wait for card
+                   closing animation
+                */
+
+                setTimeout(
+                    function () {
 
                         envelope.classList.remove(
                             "hide-envelope"
+                        );
+
+
+                        envelope.classList.remove(
+                            "open"
                         );
 
                     },
@@ -206,10 +262,11 @@ document.addEventListener("DOMContentLoaded",function(){
         ).getTime();
 
 
-    function updateCountdown(){
+    function updateCountdown() {
 
         const now =
             new Date().getTime();
+
 
         const distance =
             weddingDate - now;
@@ -220,15 +277,18 @@ document.addEventListener("DOMContentLoaded",function(){
                 "days"
             );
 
+
         const hours =
             document.getElementById(
                 "hours"
             );
 
+
         const minutes =
             document.getElementById(
                 "minutes"
             );
+
 
         const seconds =
             document.getElementById(
@@ -236,17 +296,28 @@ document.addEventListener("DOMContentLoaded",function(){
             );
 
 
-        if(
+        /*
+           Stop if countdown
+           elements don't exist
+        */
+
+        if (
             !days ||
             !hours ||
             !minutes ||
             !seconds
-        ){
+        ) {
+
             return;
+
         }
 
 
-        if(distance <= 0){
+        /*
+           Wedding date reached
+        */
+
+        if (distance <= 0) {
 
             days.textContent = "00";
             hours.textContent = "00";
@@ -258,12 +329,20 @@ document.addEventListener("DOMContentLoaded",function(){
         }
 
 
+        /*
+           Calculate days
+        */
+
         const d =
             Math.floor(
                 distance /
                 (1000 * 60 * 60 * 24)
             );
 
+
+        /*
+           Calculate hours
+        */
 
         const h =
             Math.floor(
@@ -275,6 +354,10 @@ document.addEventListener("DOMContentLoaded",function(){
             );
 
 
+        /*
+           Calculate minutes
+        */
+
         const m =
             Math.floor(
                 (
@@ -284,6 +367,10 @@ document.addEventListener("DOMContentLoaded",function(){
                 (1000 * 60)
             );
 
+
+        /*
+           Calculate seconds
+        */
 
         const s =
             Math.floor(
@@ -295,22 +382,50 @@ document.addEventListener("DOMContentLoaded",function(){
             );
 
 
+        /*
+           Display countdown
+        */
+
         days.textContent =
-            String(d).padStart(2,"0");
+            String(d).padStart(
+                2,
+                "0"
+            );
+
 
         hours.textContent =
-            String(h).padStart(2,"0");
+            String(h).padStart(
+                2,
+                "0"
+            );
+
 
         minutes.textContent =
-            String(m).padStart(2,"0");
+            String(m).padStart(
+                2,
+                "0"
+            );
+
 
         seconds.textContent =
-            String(s).padStart(2,"0");
+            String(s).padStart(
+                2,
+                "0"
+            );
 
     }
 
 
+    /*
+       Run immediately
+    */
+
     updateCountdown();
+
+
+    /*
+       Update every second
+    */
 
     setInterval(
         updateCountdown,
@@ -322,34 +437,41 @@ document.addEventListener("DOMContentLoaded",function(){
        GALLERY
     ========================== */
 
-    document
-        .querySelectorAll(
+    const galleryImages =
+        document.querySelectorAll(
             ".gallery-grid img"
-        )
-        .forEach(
-            function(img){
-
-                img.addEventListener(
-                    "click",
-                    function(){
-
-                        window.open(
-                            img.src,
-                            "_blank"
-                        );
-
-                    }
-                );
-
-            }
         );
+
+
+    galleryImages.forEach(
+        function (img) {
+
+            img.addEventListener(
+                "click",
+                function () {
+
+                    /*
+                       Open image
+                       in new tab
+                    */
+
+                    window.open(
+                        img.src,
+                        "_blank"
+                    );
+
+                }
+            );
+
+        }
+    );
 
 
     /* ==========================
        FALLING FLOWERS
     ========================== */
 
-    const flowerList = [
+    const flowers = [
 
         "🌸",
         "🌺",
@@ -362,30 +484,51 @@ document.addEventListener("DOMContentLoaded",function(){
     ];
 
 
-    function createFlower(){
+    function createFlower() {
+
+        /*
+           Create flower element
+        */
 
         const flower =
             document.createElement(
                 "div"
             );
 
+
+        /*
+           Add CSS class
+        */
+
         flower.className =
             "falling-flower";
 
 
+        /*
+           Random flower
+        */
+
         flower.textContent =
-            flowerList[
+            flowers[
                 Math.floor(
                     Math.random() *
-                    flowerList.length
+                    flowers.length
                 )
             ];
 
+
+        /*
+           Random horizontal position
+        */
 
         flower.style.left =
             Math.random() * 100 +
             "vw";
 
+
+        /*
+           Random size
+        */
 
         flower.style.fontSize =
             (
@@ -394,6 +537,10 @@ document.addEventListener("DOMContentLoaded",function(){
             ) +
             "px";
 
+
+        /*
+           Random falling speed
+        */
 
         const duration =
             6 +
@@ -405,15 +552,36 @@ document.addEventListener("DOMContentLoaded",function(){
             "s";
 
 
+        /*
+           Make sure animation
+           starts immediately
+        */
+
+        flower.style.animationDelay =
+            "0s";
+
+
+        /*
+           Add to page
+        */
+
         document.body.appendChild(
             flower
         );
 
 
-        setTimeout(
-            function(){
+        /*
+           Remove after animation
+        */
 
-                flower.remove();
+        setTimeout(
+            function () {
+
+                if (flower) {
+
+                    flower.remove();
+
+                }
 
             },
             (duration + 1) * 1000
@@ -422,13 +590,15 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
 
-    /* First flowers */
+    /*
+       Create flowers immediately
+    */
 
-    for(
+    for (
         let i = 0;
         i < 15;
         i++
-    ){
+    ) {
 
         setTimeout(
             createFlower,
@@ -438,7 +608,9 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
 
-    /* Continuous flowers */
+    /*
+       Keep creating flowers
+    */
 
     setInterval(
         createFlower,
@@ -452,18 +624,22 @@ document.addEventListener("DOMContentLoaded",function(){
    ENTER INVITATION
 ========================== */
 
-function goToCard(){
+function goToCard() {
 
     const weddingCard =
         document.getElementById(
             "weddingCard"
         );
 
-    if(weddingCard){
+
+    if (weddingCard) {
 
         weddingCard.scrollIntoView({
-            behavior:"smooth",
-            block:"start"
+
+            behavior: "smooth",
+
+            block: "start"
+
         });
 
     }
